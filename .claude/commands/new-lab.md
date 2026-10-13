@@ -28,4 +28,5 @@ Create the next 30–45 minute hands-on DevOps/MLOps mini lab (Azure DevOps, Kub
 5. Validate what you can in this environment: `bash -n` on every script; `helm lint`/`helm template` and `kubectl apply --dry-run=client` if the tools are available (try installing helm/kubectl if missing; skip gracefully if you cannot). Fix anything that fails.
 6. Append a History row to `progress/tracker.md` (status `OPEN`, score `—`) and increment the skill-matrix "Labs" column for the areas touched.
 7. If other labs are OPEN, add `Pending labs: #.., #..` at the end of the README.
-8. Final output: lab title, level, path. Never print the solution.
+8. Stage only the new lab directory and `progress/tracker.md`, commit with message `lab NN: <title>`, and push. If push fails, say so.
+9. Final output: lab title, level, path, and how to start (`bash env/setup.sh`). Never print the solution.

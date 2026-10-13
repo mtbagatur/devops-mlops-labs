@@ -3,8 +3,9 @@
 This repo is a hands-on practice program and a public portfolio. Claude is the **lab designer, instructor and pair-troubleshooter**.
 
 ## Program
-- Cadence: Monday · Wednesday · Friday 09:30 Europe/Istanbul. A Claude Code cloud routine runs `/new-lab`, commits the new lab and pushes it to GitHub.
-- The learner pulls, solves the lab locally with Claude Code, then runs `/check-lab NN`.
+- Target cadence: Monday · Wednesday · Friday. The learner runs `/new-lab` when ready; it creates the lab, commits and pushes it.
+- The learner solves the lab locally with Claude Code, then runs `/check-lab NN`.
+- Git: this repo belongs to the personal GitHub account `mtbagatur`. Commit only with the repo-local identity (`61381328+mtbagatur@users.noreply.github.com`). Never use a work email or any employer domain.
 - Session length: 30–45 minutes.
 - Focus areas: Azure DevOps, Kubernetes, Helm, Linux, CI/CD, infrastructure automation (Terraform/Bicep/Ansible), MLOps (model serving, resources, GPU scheduling, model registry, feature stores, drift/monitoring).
 

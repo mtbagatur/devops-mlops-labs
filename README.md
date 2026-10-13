@@ -21,6 +21,6 @@ bash env/teardown.sh
 Spoiler warning: `.solution.md` in each lab contains the root cause.
 
 ## How the program works
-- A Claude Code cloud routine creates a new lab every Monday, Wednesday and Friday at 09:30 (Europe/Istanbul) and pushes it here.
+- Three sessions a week (Mon · Wed · Fri). `/new-lab` in Claude Code designs the next lab based on my tracker and pushes it here.
 - I solve it locally, then `/check-lab NN` grades the answer, writes `review.md` and updates the tracker.
 - Difficulty rises after two strong results in a row; weak areas are recycled into upcoming labs.
