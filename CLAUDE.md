@@ -46,7 +46,7 @@ labs/lab-NN-<slug>/
   review.md     # instructor review (after /check-lab)
 progress/tracker.md
 ```
-Labs 01–06 were imported from an earlier chat. They are simulation-only (`lab.md`, no `env/`); Claude plays the environment.
+Labs 01–06 were imported from an earlier chat and corrected for technical consistency. 01, 02, 03, 05 and 06 are simulated: Claude plays the environment and returns output consistent with `.solution.md`. 04 is runnable.
 
 ## Language
 Lab text and code in English (portfolio + real tooling vocabulary). Reviews in Turkish, technical terms in English.

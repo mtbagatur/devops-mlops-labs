@@ -5,7 +5,7 @@ argument-hint: <lab number, e.g. 07>
 
 Lab number: $ARGUMENTS (if empty, use the most recent lab with status OPEN or IN-PROGRESS).
 
-1. Read `CLAUDE.md`, `progress/tracker.md`, the lab's `README.md` or `lab.md`, `answer.md`, `rounds.md` (if any) and `.solution.md` (if missing, derive the reference solution from the lab files now).
+1. Read `CLAUDE.md`, `progress/tracker.md`, the lab's `README.md`, `answer.md`, `rounds.md` (if any) and `.solution.md` (if missing, derive the reference solution from the lab files now).
 2. If the learner answered in chat, append that answer to `answer.md` first.
 3. For runnable labs, if the cluster `lab-NN` exists, run `bash verify.sh` and use the result as evidence. A passing verify is necessary but not sufficient for a high score; the reasoning and prevention matter too.
 4. **Interactive round** — if the learner is mid-investigation (simulated labs, or asked for the next step): append `## Round N` to `rounds.md` with their commands and realistic outputs consistent with `.solution.md`, show the outputs, ask for the next step, set status `IN-PROGRESS`, and stop.

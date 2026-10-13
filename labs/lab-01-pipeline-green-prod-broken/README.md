@@ -4,16 +4,19 @@
 **Timebox:** 30–45 min · **Focus:** Azure DevOps · Linux · systemd · CI/CD · production troubleshooting
 
 ## Scenario
-You are on-call for a production Linux server. An internal Python API called `pricing-api` is deployed through Azure DevOps. The deployment pipeline has just completed successfully:
+You are on-call for a production Linux server. An internal Python API called `pricing-api` is deployed through Azure DevOps. The release pipeline finished green two minutes ago:
 
 ```
 Build        ✅
 Tests        ✅
 Deploy       ✅
-Healthcheck  ❌
+Healthcheck  ✅
+```
 
-GET https://pricing.internal/health
-→ 502 Bad Gateway
+Ninety seconds later the uptime monitor pages you:
+
+```
+[FIRING] pricing-api health  GET https://pricing.internal/health → 502 Bad Gateway
 ```
 
 NGINX is running and proxies traffic to `127.0.0.1:8080`. The application runs as a `systemd` service.
@@ -76,6 +79,11 @@ Deployment step:
 
     echo "Deployment completed."
   displayName: Deploy pricing-api
+
+- script: |
+    curl -s https://pricing.internal/health
+    echo "Healthcheck done."
+  displayName: Healthcheck
 ```
 
 ## Your task
@@ -86,7 +94,7 @@ Give the commands/checks you would perform **in order**, from the moment you SSH
 1. What is the immediate production fix?
 2. What is the root cause in the CI/CD design?
 3. How would you modify the pipeline so the required environment reaches `systemd` securely?
-4. How would you prevent the pipeline from reporting Deploy ✅ when the application is actually dead?
+4. Why did both Deploy and Healthcheck report ✅ while the application was dead, and how would you change the pipeline so that cannot happen again?
 5. Bonus: identify one additional production risk hidden in this deployment step.
 
 ## Constraints
@@ -94,4 +102,4 @@ Give the commands/checks you would perform **in order**, from the moment you SSH
 - Do not print or expose the database secret in logs or terminal output.
 
 ## How to answer
-Write your answer in `answer.md`, then run `/check-lab 01`.
+This lab is simulated: tell Claude your first command and it returns the server's output. Work step by step, then put the final answer in `answer.md` and run `/check-lab 01`.

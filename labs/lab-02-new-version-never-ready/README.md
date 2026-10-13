@@ -15,21 +15,23 @@ Deployment verify  ❌
 Error: deployment "recommendation-api" exceeded its progress deadline
 ```
 
-Pipeline command:
+Pipeline steps:
 ```bash
+# Helm upgrade
 helm upgrade --install recommendation-api ./charts/recommendation-api \
   --namespace production \
-  --set image.tag=v2.8.0 \
-  --wait \
-  --timeout 5m
+  --set image.tag=v2.8.0
+
+# Deployment verify
+kubectl rollout status deployment/recommendation-api -n production --timeout=12m
 ```
 
 ## Evidence
 ```
 $ kubectl get pods -n production
 NAME                                  READY  STATUS   RESTARTS  AGE
-recommendation-api-6f9db77f85-8kp2m   0/1    Running  0         6m
-recommendation-api-6f9db77f85-h7x9q   0/1    Running  0         6m
+recommendation-api-6f9db77f85-8kp2m   0/1    Running  0         11m
+recommendation-api-6f9db77f85-h7x9q   0/1    Running  0         11m
 recommendation-api-748bc5c477-r2md9   1/1    Running  0         3d
 recommendation-api-748bc5c477-vj5zx   1/1    Running  0         3d
 ```
@@ -45,21 +47,30 @@ Reason:
   ProgressDeadlineExceeded
 ```
 
-Helm template:
+Helm template (excerpt):
 ```yaml
-containers:
-  - name: recommendation-api
-    image: "registry.internal/recommendation-api:{{ .Values.image.tag }}"
-    ports:
-      - containerPort: 8080
-    readinessProbe:
-      httpGet:
-        path: /health/ready
-        port: 8080
-      initialDelaySeconds: 5
-      periodSeconds: 10
-      timeoutSeconds: 2
-      failureThreshold: 3
+spec:
+  replicas: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 50%
+  template:
+    spec:
+      containers:
+        - name: recommendation-api
+          image: "registry.internal/recommendation-api:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
 ```
 
 `kubectl describe pod` shows readiness probe **HTTP 503**. Application logs: Redis connected → model loads → **feature-store connection times out**.
@@ -75,10 +86,11 @@ Starting from the information above, show exactly what you would investigate nex
 - commands from inside the pod,
 - Kubernetes resources around `feature-store`,
 - likely config mistakes if the feature-store service itself is healthy,
-- end-to-end verification.
+- end-to-end verification,
+- one thing in the Deployment spec that made this incident worse than it needed to be.
 
 ## Constraints
 - Production traffic is still served by two old `v2.7.x` pods. Preserve healthy capacity while troubleshooting.
 
 ## How to answer
-Reply as though you are at the terminal: commands in order, with a short note on what each stage proves. Write in `answer.md`, then run `/check-lab 02`.
+This lab is simulated: tell Claude your commands one stage at a time and it returns the cluster's output. Put the final answer in `answer.md` and run `/check-lab 02`.

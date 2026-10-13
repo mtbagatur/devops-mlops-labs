@@ -35,6 +35,6 @@ _None recorded yet — no lab has been answered. Do not infer weak areas from un
 | 01 | Pipeline green, production broken | 2 | systemd + ADO secret flow | OPEN | — | imported |
 | 02 | New version never becomes ready | 2 | readiness / K8s networking | OPEN | — | imported |
 | 03 | Works manually, fails after deployment | 2 | Helm secret flow | OPEN | — | imported |
-| 04 | ConfigMap changed, app didn't | 2–3 | ConfigMap rollout | OPEN | — | imported |
+| 04 | ConfigMap changed, app didn't (runnable) | 3 | ConfigMap rollout | OPEN | — | imported |
 | 05 | ML model deployment keeps crashing | 2 | OOMKilled / values precedence | OPEN | — | imported |
 | 06 | Cannot schedule the new ML model | 2 | GPU scheduling / rollout strategy | OPEN | — | imported |

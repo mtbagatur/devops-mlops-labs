@@ -1,0 +1,6 @@
+apiVersion: v2
+name: order-api
+description: Order API for the shop platform
+type: application
+version: 1.8.0
+appVersion: "4.6.2"

@@ -5,7 +5,16 @@ Hands-on break-fix labs for production troubleshooting across **Kubernetes, Helm
 Each lab is a realistic incident: a broken environment that runs locally on `kind`, a task, my investigation and fix (`answer.md`), and a graded review (`review.md`). New labs arrive three times a week and adapt to my weak areas; progress is tracked in [progress/tracker.md](progress/tracker.md).
 
 ## Labs
-See [labs/](labs/). Labs 01–06 are scenario-only (simulated environment); later labs are fully runnable.
+| # | Incident | Skills | Format |
+|---|---|---|---|
+| [01](labs/lab-01-pipeline-green-prod-broken) | Pipeline green, production broken | Linux, systemd, Azure DevOps secrets, health gates | Simulated |
+| [02](labs/lab-02-new-version-never-ready) | New version never becomes Ready | Readiness probes, DNS, Services, NetworkPolicy, rollout strategy | Simulated |
+| [03](labs/lab-03-works-manually-fails-after-deploy) | Works manually, fails after deployment | Helm-managed Secrets, Azure DevOps secret flow, Key Vault | Simulated |
+| [04](labs/lab-04-configmap-changed-app-didnt) | The ConfigMap changed, the app didn't | ConfigMap rollout, PodTemplate hash, Helm checksum annotation | **Runnable** |
+| [05](labs/lab-05-ml-model-oomkilled) | ML model deployment keeps crashing | OOMKilled, Helm values precedence, model memory budgeting | Simulated |
+| [06](labs/lab-06-gpu-scheduling-new-model) | Cannot schedule the new ML model | GPU scheduling, maxSurge/maxUnavailable, AKS node pools | Simulated |
+
+Simulated labs are worked through interactively with Claude acting as the environment; runnable labs ship a broken `kind` cluster and a `verify.sh`.
 
 ## Running a lab
 Requirements: Docker Desktop, `kind`, `kubectl`, `helm`, and Git Bash or WSL.
