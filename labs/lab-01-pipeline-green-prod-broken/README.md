@@ -1,5 +1,5 @@
 # Mini Lab #01 — "Pipeline green, production broken"
-> Status: OPEN · Created: imported from chat · Level: 2 – Intermediate · Recycles: —
+> Status: REVIEWED · Score 8/10 · Created: imported from chat · Level: 2 – Intermediate · Recycles: —
 
 **Timebox:** 30–45 min · **Focus:** Azure DevOps · Linux · systemd · CI/CD · production troubleshooting
 

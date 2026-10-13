@@ -31,6 +31,7 @@ Every lab ships a **real broken environment** that the learner runs locally, plu
 ## Adaptive difficulty (`progress/tracker.md` is the single source of truth)
 - Levels: 1 Beginner · 2 Intermediate · 3 Intermediate+ · 4 Advanced · 5 Expert.
 - +1 level after 2 consecutive scores ≥ 8/10. −1 level after 2 consecutive scores ≤ 4/10.
+- Guided (multiple-choice) labs count toward the rule, but a level-up also requires at least one open-ended lab ≥ 8/10 at the current level.
 - Every new lab recycles at least one weak area and avoids the primary topic of the last 2 labs.
 - Unanswered labs are not evidence of skill. If 3 or more labs are OPEN, the next lab stays at the current level and is shorter.
 - Higher levels add: multiple interacting causes, misleading symptoms, partial information, rollback decisions, IaC changes, postmortem writing.
