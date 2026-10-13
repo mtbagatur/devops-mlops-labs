@@ -1,0 +1,16 @@
+replicaCount: 4
+
+image:
+  repository: busybox
+  tag: "1.36"
+
+config:
+  paymentTimeout: "5"
+  logLevel: "info"
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 16Mi
+  limits:
+    memory: 32Mi

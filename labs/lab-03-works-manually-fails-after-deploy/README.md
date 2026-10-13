@@ -73,10 +73,19 @@ steps:
     arguments: >
       --install
       --set image.tag=$(Build.BuildNumber)
-      --wait
-      --timeout 5m
+
+- script: kubectl rollout status deployment/fraud-api -n fraud-prod --timeout=5m
+  displayName: Deployment validation
 ```
 The variable group contains `ML_MODEL_API_KEY` as a secret.
+
+Recent chart history:
+```
+$ git log --oneline -3 -- charts/fraud-api
+9c41e2a chart: manage fraud-api-secrets in Helm, drop manual runbook step
+4b7d019 chart: bump appVersion to 1.15.0
+e22f8c3 chart: add REDIS_HOST from ConfigMap
+```
 
 ## Your task
 Find the fault and propose the safe fix. Work **Pod → Deployment → Secret → Helm release → Azure DevOps**. Give roughly 8–15 commands and prove:
@@ -85,7 +94,7 @@ Find the fault and propose the safe fix. Work **Pod → Deployment → Secret �
 3. whether its value is empty — **without revealing it**,
 4. whether Helm believes the value exists,
 5. why the Azure DevOps variable isn't automatically reaching Helm,
-6. how to repair production without unnecessarily touching the healthy old ReplicaSet,
+6. how to repair production without unnecessarily touching the healthy old ReplicaSet — and what happens to the "healthy" old pods if one of them restarts right now,
 7. how to redesign the secret flow so a future deployment cannot silently overwrite a valid Secret with an empty value.
 
 Also consider where Helm values may be persisted or exposed — do not assume putting a secret in `--set` is automatically a good long-term design.
@@ -94,4 +103,4 @@ Also consider where Helm values may be persisted or exposed — do not assume pu
 - You must not print or decode the production secret.
 
 ## How to answer
-Write in `answer.md`, then run `/check-lab 03`.
+This lab is simulated: send your commands one stage at a time and the simulated cluster returns its output. Put the final answer in `answer.md` and run `/check-lab 03`.
