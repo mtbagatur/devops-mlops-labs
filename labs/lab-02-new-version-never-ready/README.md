@@ -1,5 +1,5 @@
 # Mini Lab #02 — Kubernetes + Helm: "Deployment succeeded, but the new version never becomes ready"
-> Status: OPEN · Created: imported from chat · Level: 2 – Intermediate · Recycles: —
+> Status: REVIEWED · Score 9/10 · Created: imported from chat · Level: 2 – Intermediate · Recycles: —
 
 **Timebox:** 30–45 min · **Focus:** Kubernetes · Helm · Azure DevOps · CI/CD · Linux/container troubleshooting
 
