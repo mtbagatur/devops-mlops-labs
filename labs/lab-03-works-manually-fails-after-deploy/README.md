@@ -1,5 +1,5 @@
 # Mini Lab #03 — Kubernetes / Helm: "Works manually, fails after deployment"
-> Status: OPEN · Created: imported from chat · Level: 2 – Intermediate · Recycles: —
+> Status: REVIEWED · Score 6/10 · Created: imported from chat · Level: 2 – Intermediate · Recycles: —
 
 **Timebox:** 30–45 min · **Focus:** Kubernetes · Helm · Azure DevOps · Secrets · CI/CD
 
