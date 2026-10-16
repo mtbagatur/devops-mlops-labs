@@ -22,7 +22,7 @@ Smoke test        ✅
 An hour later the payments team says checkouts still time out after 5 seconds.
 
 ## Run it
-Requirements: Docker Desktop running, `kind`, `kubectl`, `helm`, Git Bash or WSL.
+Requirements: Linux or Ubuntu on WSL2 with Docker Engine, `kind`, `kubectl`, `helm` (see [scripts/setup-wsl-ubuntu.sh](../../scripts/setup-wsl-ubuntu.sh)). First run takes ~2 minutes.
 
 ```bash
 cd labs/lab-04-configmap-changed-app-didnt

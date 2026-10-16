@@ -17,7 +17,7 @@ Each lab is a realistic incident: a broken environment that runs locally on `kin
 Simulated labs are worked through interactively with the environment's output played back step by step; runnable labs ship a broken `kind` cluster and a `verify.sh`.
 
 ## Running a lab
-Requirements: Docker Desktop, `kind`, `kubectl`, `helm`, and Git Bash or WSL.
+Requirements: Linux (or Ubuntu on WSL2) with Docker Engine, `kind`, `kubectl`, `helm` and `jq`. On a fresh Ubuntu, `bash scripts/setup-wsl-ubuntu.sh` installs all of them.
 
 ```bash
 cd labs/lab-07-<name>
