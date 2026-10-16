@@ -22,7 +22,9 @@ else
 fi
 
 # 3. Every running pod sees the new value
-pods=$(kubectl get pods -n "$NS" -l app="$RELEASE" --field-selector=status.phase=Running -o jsonpath='{.items[*].metadata.name}')
+# Pods that are terminating after a rollout still report phase Running; skip them.
+pods=$(kubectl get pods -n "$NS" -l app="$RELEASE" --field-selector=status.phase=Running \
+  -o go-template='{{range .items}}{{if not .metadata.deletionTimestamp}}{{.metadata.name}} {{end}}{{end}}')
 stale=0
 for p in $pods; do
   v=$(kubectl exec -n "$NS" "$p" -- printenv PAYMENT_TIMEOUT 2>/dev/null)

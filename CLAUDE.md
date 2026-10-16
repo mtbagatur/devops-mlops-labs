@@ -11,7 +11,7 @@ This repo is a hands-on practice program and a public portfolio. Claude is the *
 
 ## Lab format: runnable break-fix
 Every lab ships a **real broken environment** that the learner runs locally, plus a verifier:
-- Local toolchain: Windows 10 + Docker Desktop + Git Bash/WSL, `kind`, `kubectl`, `helm`. Optional: `terraform`, `az`.
+- Local toolchain: Ubuntu 24.04 on WSL2 with Docker Engine (no Docker Desktop), `kind`, `kubectl`, `helm`, `jq` — installed by `scripts/setup-wsl-ubuntu.sh`. Labs are run from the Ubuntu shell. Optional: `terraform`, `az`.
 - Scripts are bash and must run in Git Bash and WSL. Clusters are named `lab-NN` so labs never collide.
 - `env/setup.sh` creates the cluster and deploys the broken state. `env/teardown.sh` deletes it.
 - `verify.sh` exits 0 only when the system is really fixed. It checks behaviour (rollout status, HTTP responses, pod env), not the presence of a specific edit.
