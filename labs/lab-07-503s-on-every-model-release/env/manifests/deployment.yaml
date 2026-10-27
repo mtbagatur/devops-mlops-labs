@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llm-gateway
+  labels:
+    app: llm-gateway
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: llm-gateway
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: llm-gateway
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: server
+          image: python:3.12-slim
+          command: ["python", "-u", "/app/server.py"]
+          env:
+            - name: MODEL_NAME
+              value: support-llm-v2
+            - name: MODEL_LOAD_SECONDS
+              value: "20"
+          ports:
+            - name: http
+              containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 5
+            failureThreshold: 2
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 3
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sleep", "5"]
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              memory: 128Mi
+          volumeMounts:
+            - name: server
+              mountPath: /app
+      volumes:
+        - name: server
+          configMap:
+            name: llm-gateway-server
