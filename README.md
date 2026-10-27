@@ -2,7 +2,7 @@
 
 Hands-on break-fix labs for production troubleshooting across **Kubernetes, Helm, Azure DevOps, Linux, CI/CD, infrastructure as code and MLOps**.
 
-Each lab is a realistic incident: a broken environment that runs locally on `kind`, a task, my investigation and fix (`answer.md`), and a graded review (`review.md`). New labs arrive three times a week and adapt to my weak areas; progress is tracked in [progress/tracker.md](progress/tracker.md).
+Each lab is a realistic incident: a broken environment that runs locally on `kind`, a task, my investigation and fix (`answer.md`), and a graded review (`review.md`). Labs adapt to my weak areas; progress and scores are tracked in [progress/tracker.md](progress/tracker.md).
 
 ## Labs
 | # | Incident | Skills | Format |
@@ -30,6 +30,6 @@ bash env/teardown.sh
 Spoiler warning: `.solution.md` in each lab contains the root cause.
 
 ## How the program works
-- Three sessions a week (Mon · Wed · Fri). Each new lab is designed from the weak areas in my tracker.
+- Sessions are scheduled around work. Each new lab is designed from the weak areas in my tracker.
 - I solve it locally, then `/check-lab NN` grades the answer, writes `review.md` and updates the tracker.
 - Difficulty rises after two strong results in a row; weak areas are recycled into upcoming labs.
